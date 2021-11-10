@@ -89,18 +89,39 @@ add_action( 'after_setup_theme', 'root_theme_setup' );
  *
  * @return void
  */
-function root_theme_widgets_init() {
+function roottheme_widgets_init() {
 
-	register_sidebar(
-		array(
-			'name'          => esc_html__( 'Patička', 'roottheme' ),
-			'id'            => 'sidebar-1',
-			'description'   => esc_html__( 'Add widgets here to appear in your footer.', 'roottheme' ),
-			'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</section>',
-			'before_title'  => '<h2 class="widget-title">',
-			'after_title'   => '</h2>',
-		)
-	);
+	
+        register_sidebar( array(
+            'name'          => __( 'Záhlaví', 'roottheme' ),
+            'id'            => 'sidebar-1',
+            'before_widget' => '<li id="%1$s" class="widget %2$s">',
+            'after_widget'  => '</li>',
+            'before_title'  => '<h3 class="widget-title">',
+            'after_title'   => '</h3>',
+        ) );
+     
+        register_sidebar( array(
+            'name'          => __( 'Zápatí', 'roottheme' ),
+            'id'            => 'sidebar-2',
+            'before_widget' => '<ul><li id="%1$s" class="widget %2$s">',
+            'after_widget'  => '</li></ul>',
+            'before_title'  => '<h3 class="widget-title">',
+            'after_title'   => '</h3>',
+        ) );
+    
 }
-add_action( 'widgets_init', 'root_theme_widgets_init' );
+add_action( 'widgets_init', 'roottheme_widgets_init' );
+
+/**
+ * Enqueue scripts and styles.
+ */
+function roottheme_scripts() {
+	wp_enqueue_style( 'roottheme-style', get_stylesheet_uri(), array(), wp_get_theme()->get( 'Version' ) );
+
+	wp_style_add_data( 'roottheme-style', 'rtl', 'replace' );
+
+	wp_enqueue_style( 'roottheme-default-style', get_template_directory_uri() . '/css/main.min.css', 'all' );
+
+}
+add_action( 'wp_enqueue_scripts', 'roottheme_scripts' );

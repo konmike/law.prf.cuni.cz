@@ -1,0 +1,70 @@
+.signpost {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 4em;
+  max-width: 100%;
+  position: relative;
+  margin-block: 1em;
+  margin-top: 3em;
+
+  .item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+
+    min-width: 320px;
+    min-height: 240px;
+    // margin-right: 125px;
+
+    position: relative;
+    border-radius: 0.1rem;
+    box-shadow: inset 0 0 0 0px rgb(255 255 255 / 60%),
+      0 1px 2px rgb(0 0 0 / 30%);
+    transition: all 300ms;
+    border: 2px solid rgb(122 122 122);
+
+    &:hover {
+      transform: scale(1.04);
+
+      & > .link {
+        box-shadow: inset 0 0 0 0px rgb(255 255 255 / 60%),
+          10px 3px 10px -4px rgb(0 0 0 / 30%);
+      }
+    }
+
+    .link {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: hsl(var(--clr-light-orange));
+      width: max-content;
+      min-width: 340px;
+      padding: 0.5em;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 1.2rem;
+      font-family: Calibri;
+      font-weight: 800;
+      color: hsl(var(--clr-prf));
+      transition: all 250ms;
+
+      position: absolute;
+      top: 220px;
+      height: 55px;
+      border-radius: 0.4rem;
+      box-shadow: inset 0 0 0 0px rgb(255 255 255 / 60%),
+        -10px 13px 14px -8px rgb(0 0 0 / 30%);
+
+      &:hover {
+        color: white;
+        background-color: hsl(var(--clr-prf));
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+:root {
+  --clr-prf: 354, 65%, 51%;
+  --clr-orange: 13, 62%, 61%;
+  --clr-light-orange: 14, 62%, 80%;
+}
+
+$breakpoints: (
+  //min-width
+  desktop: 68.125em,
+  //max-width
+  tablet: 43.75em,
+  mobile: 20em
+);

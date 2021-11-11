@@ -1,44 +1,86 @@
 <?php
-/**
- * The main template file
- *
- * This is the most generic template file in a WordPress theme
- * and one of the two required files for a theme (the other being style.css).
- * It is used to display a page when nothing more specific matches a query.
- * E.g., it puts together the home page when no home.php file exists.
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
- *
- * @package WordPress
- * @subpackage Twenty_Twenty_One
- * @since Twenty Twenty-One 1.0
- */
 
-get_header(); ?>
 
-<?php if ( is_home() && ! is_front_page() && ! empty( single_post_title( '', false ) ) ) : ?>
-	<header class="page-header alignwide">
-		<h1 class="page-title"><?php single_post_title(); ?></h1>
-	</header><!-- .page-header -->
-<?php endif; ?>
+get_header();
+
+?>
+
+<ul id="post-<?php the_ID(); ?>" class="subdomains-feed">
 
 <?php
 
-    //Do stuff
+	function faster_screen($url, $id){
 
+		$filename = 'wp-content/uploads/screenshots/'.$id.'.png';
+		if (file_exists($filename)) {
+			return;
+		}
+		
+		$image = $id.'.png';
 
-// if ( have_posts() ) {
+		$accountKey = 'f863cc';
 
-// 	// Load posts loop.
-// 	while ( have_posts() ) {
-// 		the_post();
+		$ch = curl_init('http://api.screenshotmachine.com/?key='.$accountKey.'&dimension=320x240&format=png&url='.$url);
 
-// 		get_template_part( 'template-parts/content/content', get_theme_mod( 'display_excerpt_or_full_post', 'excerpt' ) );
-// 	}
+		$fp = fopen('wp-content/uploads/screenshots/'.$image, 'wb');
 
-// 	// Previous/next page navigation.
-// 	twenty_twenty_one_the_posts_navigation();
+		curl_setopt($ch, CURLOPT_FILE, $fp);
 
-// }
+		curl_setopt($ch, CURLOPT_HEADER, 0);
 
+		curl_exec($ch);
+
+		curl_close($ch);
+
+		fclose($fp);
+	}
+
+?>
+
+<?php
+ function get_screenshot($url) 
+ {
+	$api ="AIzaSyC-Q5kaY97eZTYjFgPLLwGkzHHTvZ-WZn4";
+
+	// $curl_init = curl_init("https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url={$url}&screenshot=true");
+	$adress="https://pagespeedonline.googleapis.com/pagespeedonline/v5/runPagespeed?url=$url&category=CATEGORY_UNSPECIFIED&strategy=DESKTOP&key=$api";
+ 	
+	$curl_init = curl_init($adress);
+    curl_setopt($curl_init,CURLOPT_RETURNTRANSFER,true);
+    
+    $response = curl_exec($curl_init);
+    curl_close($curl_init);
+
+	// curl_setopt($curl_init, CURLOPT_RETURNTRANSFER, true);
+ 	// $response = curl_exec($curl_init);
+ 	// curl_close($curl_init);
+ 	//call Google PageSpeed Insights API
+ 	//decode json data
+ 	$googlepsdata = json_decode($response, true);
+ 	//screenshot data
+
+ 	// echo $googledata["lighthouseResult"]["audits"]["full-page-screenshot"]["details"]["screenshot"]['data'];
+ 
+ 	return $googlepsdata['lighthouseResult']['audits']['final-screenshot']['details']['data'];
+ }
+
+ 
+?>
+
+		<?php
+			$subsites = get_sites(array('offset' => '1',));
+			foreach( $subsites as $subsite ) {
+			  $subsite_id = get_object_vars($subsite)["blog_id"];
+			  $subsite_name = get_blog_details($subsite_id)->blogname;
+			  $subsite_url = get_site_url($subsite_id);
+			//   $screen = get_screenshot("https://seznam.cz");
+			  $b_screen = faster_screen("https://law.prf.cuni.cz/pravavpraze", $subsite_id);
+			  echo '<li style="background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url(wp-content/uploads/screenshots/' . $subsite_id . '.png);" class="card"><a class="title" href="' . $subsite_url . '">' . $subsite_name .'</a></li>';
+			}
+
+		?>
+			
+</ul>
+
+<?php
 get_footer();

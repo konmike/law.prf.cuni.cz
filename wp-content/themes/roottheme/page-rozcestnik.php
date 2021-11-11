@@ -13,7 +13,7 @@ get_header();
 
 ?>
 
-<ul id="post-<?php the_ID(); ?>" class="signpost">
+<ul id="post-<?php the_ID(); ?>" class="subdomains-feed">
 
 <?php
 
@@ -83,7 +83,7 @@ get_header();
 			  $subsite_url = get_site_url($subsite_id);
 			//   $screen = get_screenshot("https://seznam.cz");
 			  $b_screen = faster_screen("https://law.prf.cuni.cz/pravavpraze", $subsite_id);
-			  echo '<li style="background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url(wp-content/uploads/screenshots/' . $subsite_id . '.png);" class="item"><a class="link" href="' . $subsite_url . '">' . $subsite_name .'</a></li>';
+			  echo '<li style="background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url(wp-content/uploads/screenshots/' . $subsite_id . '.png);" class="card"><a class="title" href="' . $subsite_url . '">' . $subsite_name .'</a></li>';
 			}
 
 		?>

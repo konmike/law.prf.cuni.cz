@@ -1,0 +1,1 @@
+# Rozcestník pro WP microsites

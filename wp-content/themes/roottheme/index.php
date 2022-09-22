@@ -34,11 +34,19 @@ get_header();
 		$subsites = get_sites(array('offset' => '1',));
 		foreach( $subsites as $subsite ) {
 			$subsite_id = get_object_vars($subsite)["blog_id"];
+			if (!get_blog_details($subsite_id)->public) {
+				continue;
+			}
+
 			$subsite_name = get_blog_details($subsite_id)->blogname;
 			$subsite_url = get_site_url($subsite_id);
 		
 			get_screenshot($subsite_url, $subsite_id);
-			echo '<li style="background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url(wp-content/uploads/screenshots/' . $subsite_id . '.png);" class="card"><a class="title" href="' . $subsite_url . '">' . $subsite_name .'</a></li>';
+			echo 	'<li class="card">
+						<div class="card__thumbnail" style="background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url(wp-content/uploads/screenshots/' . $subsite_id . '.png);"></div>
+						<span class="card__title">' . $subsite_name .'</span>
+						<a href="' . $subsite_url . '" title="Přejít na stránku ' . $subsite_name .'" class="card__more"></a>
+					 </li>';
 		}
 	?>
 			

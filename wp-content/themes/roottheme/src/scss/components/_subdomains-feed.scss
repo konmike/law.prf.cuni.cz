@@ -1,13 +1,14 @@
 .subdomains-feed {
   display: flex;
   flex-flow: row nowrap;
-  align-items: center;
+  align-items: start;
   justify-content: start;
   column-gap: 2em;
   max-width: 100%;
   min-height: 60vh;
   margin-block: 1em;
-  margin-top: 3em;
+  margin-top: 2em;
+  margin-inline: 1em;
   position: relative;
   overflow-x: auto;
 }

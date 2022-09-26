@@ -21,6 +21,7 @@
 
     @include mq(middle){
       flex-flow: row nowrap;
+      margin-block: 1em;
     }
 
     &::after{
@@ -41,8 +42,9 @@
         height: auto;
         box-shadow: -10px 0 20px 3px var(--clr-gray);
         top: 0;
-        bottom: 3.6em;
+        bottom: 1em;
         right: 1em;
+        left: auto;
       }
     }
 }
@@ -54,11 +56,17 @@
   justify-content: end;
   margin-bottom: 1em;
   margin-inline: auto;
-  min-width: 320px;
+  min-width: auto;
   background: rgba(0,0,0,.1);
+  border-radius: var(--br-rs);
   
+  @include mq(small){
+    min-width: 320px;
+  }
+
   @include mq(middle){
-    border-radius: var(--br-rs);
+    min-width: auto;
+    margin-bottom: 0;
   }
 }
 .pre-title h1{
@@ -70,4 +78,9 @@
   background-color: #ffffff;
   text-align: center;
   border-radius: var(--br-rs);
+
+  @include mq(middle){
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
 }

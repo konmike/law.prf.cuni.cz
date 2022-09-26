@@ -28,7 +28,7 @@ get_header();
 		$days = 7;
 		$filename = 'wp-content/uploads/screenshots/' . $id . '.png';
 		if (file_exists($filename)) {
-			if ($now - filemtime($filename) >= 60 * 60 * 24 * $days)
+			if ($now - filemtime($filename) >= 60 * 60 * 24 * $days && ($id != "8"))
 				unlink($filename);
 			else {
 				return;

@@ -24,9 +24,15 @@ get_header();
 	function get_screenshot($url, $id)
 	{
 		$now = time();
+		// number of days, how old is the file
+		$days = 7;
 		$filename = 'wp-content/uploads/screenshots/' . $id . '.png';
-		if (file_exists($filename) && ($now - filemtime($filename) >= 60 * 60 * 24 * 7)) {
-			unlink($filename);
+		if (file_exists($filename)) {
+			if ($now - filemtime($filename) >= 60 * 60 * 24 * $days)
+				unlink($filename);
+			else {
+				return;
+			}
 		};
 
 		$image = $id . '.png';

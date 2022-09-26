@@ -2,12 +2,18 @@
   --clr-prf: 354, 65%, 51%;
   --clr-orange: 13, 62%, 61%;
   --clr-light-orange: 14, 62%, 80%;
+  --clr-gray: #454545;
+  --txt-font: "Segoe UI",Tahoma,Geneva,Verdana,sans-serif;
 }
 
 $breakpoints: (
   //min-width
-  desktop: 68.125em,
-  //max-width
-  tablet: 43.75em,
-  mobile: 20em
+  // desktop: 68.125em,
+  // //max-width
+  // tablet: 43.75em,
+  // mobile: 20em,
+
+  big: 80em, // 1280px
+  middle: 48em, // 768px
+  small: 30em, // 480px
 );

@@ -1,14 +1,24 @@
+@use "../abstract" as *;
+
 .subdomains-feed {
   display: flex;
-  flex-flow: row nowrap;
-  align-items: start;
-  justify-content: start;
-  column-gap: 2em;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  row-gap: 1em;
   max-width: 100%;
-  min-height: 60vh;
+  max-height: 60vh;
   margin-block: 1em;
   margin-top: 2em;
   margin-inline: 1em;
   position: relative;
-  overflow-x: auto;
+  overflow-y: auto;
+
+  @include mq(middle){
+    flex-flow: row nowrap;
+    align-items: flex-start;
+    column-gap: 2em;
+    min-height: 60vh;
+    max-height: none;
+  }
 }

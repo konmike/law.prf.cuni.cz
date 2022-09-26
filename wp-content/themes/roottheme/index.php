@@ -14,6 +14,10 @@ get_header();
 
 ?>
 
+<div class="pre-title">
+	<h1>Rozcestník</h1>
+</div>
+
 <ul id="post-<?php the_ID(); ?>" class="subdomains-feed">
 
 	<?php

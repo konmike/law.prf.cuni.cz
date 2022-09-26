@@ -23,8 +23,11 @@ get_header();
 	<?php
 	function get_screenshot($url, $id)
 	{
+		$now = time();
 		$filename = 'wp-content/uploads/screenshots/' . $id . '.png';
-		if (file_exists($filename)) return;
+		if (file_exists($filename) && ($now - filemtime($filename) >= 60 * 60 * 24 * 7)) {
+			unlink($filename);
+		};
 
 		$image = $id . '.png';
 		$accountKey = 'f863cc';

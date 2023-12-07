@@ -1,0 +1,19 @@
+@use "../abstract" as *;
+
+.sidebar {
+  &--header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+
+    @include mq(tablet) {
+      justify-content: center;
+    }
+
+    img {
+      padding-top: 4px;
+    }
+  }
+}

@@ -122,6 +122,7 @@ function roottheme_scripts() {
 	wp_style_add_data( 'roottheme-style', 'rtl', 'replace' );
 
 	wp_enqueue_style( 'roottheme-default-style', get_template_directory_uri() . '/css/main.min.css', 'all' );
+    wp_enqueue_style( 'font-awesome', 'https://use.fontawesome.com/releases/v5.3.1/css/all.css' );
 
 }
 add_action( 'wp_enqueue_scripts', 'roottheme_scripts' );

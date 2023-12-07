@@ -48,7 +48,7 @@ body {
 
 .site--content {
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: row nowrap;
   justify-content: center;
   margin-block: 2em;
   padding-inline: 1em;
@@ -78,7 +78,7 @@ body {
 
 .subdomains-feed {
   display: flex;
-  flex-flow: column wrap;
+  flex-flow: row wrap;
   align-items: center;
   justify-content: center;
   row-gap: 1em;
